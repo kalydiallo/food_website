@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>Subbmission</title>
+		<% include partials/library.ejs %>
+	</head>
+	<body>
+	    <div class="container">
+	      <h2><br></h2>
+	      <h2>---😊---</h2>
+	      <h2 class="page-header">Submitted</h2>
+	      <% include partials/nav.ejs %>
+	      <div class="contant1">
+	      	<div class="tab2">
+		 		<h4>&nbsp;&nbsp;&nbsp;Hi <%= data.unname %>,</h4>
+		 		<p class="tab">Your email is : <%= data.email %></p>
+		     	<p class="tab"><%= data.comment %>.</p>
+		     	<p>&nbsp;&nbsp;&nbsp;Thank you for contacting us.</p>
+		     	<p><br></p>
+	     	</div>
+	    </div>
+	</div>
+	</body>
+</html>

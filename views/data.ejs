@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> ResData | API</title>
+
+<style>
+/* css */
+
+	body {
+	    background-image: url("../images/bg.jpg");
+	    margin-top: 0;
+	}
+	#container {
+	    width: 80%;
+	    margin: auto;
+	    background-color: #696969;
+	    color: white;
+	    font-family: Sans-serif;
+	    font-size: 1.7vw;
+	}
+	.ajax-container, h1, p, h2{
+		width: 50%;
+		margin: 50px auto;
+	}
+
+	.center {
+	    display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 25%;
+	}
+
+	#btn{
+		height: 50px;
+		width: 120px;
+		border: none;
+		border-radius: 6px;
+		color: white;
+		background: blue;
+		outline: none;
+		font-size: 22px;
+		opacity: 0.7;
+		padding: 10px;
+	}
+
+	#btn:hover{
+		cursor: pointer;
+		opacity: 1;
+	}
+
+	.item-details{
+		margin-top: 10px;
+		border: 2px solid;
+		padding: 6px;
+		background-color: #C4DEDC;
+		color: black;
+		font-size: 2vw;
+	}
+
+	* {
+    box-sizing: border-box;
+}
+
+	nav ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    background-color: #333;
+	}
+
+	nav li {
+	    float: left;
+	}
+
+	nav li a {
+	    display: block;
+	    color: white;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+	}
+
+	nav li a:hover{
+	    background-color: skyblue;
+	    color: green;
+	}
+
+	nav .active {
+	    background-color: #4CAF50;
+	}
+
+</style>
+	
+</head>
+
+<body>
+	<div id="container">
+		 <% include partials/nav.ejs %>
+		<h1>DOHMH New York City Restaurant Inspection Results.</h1>
+		<p>
+			NYC is the home of one the largest number of restaurants in the world. It important to know about food safety for our heath before we pay visit to those restrarent some or may be part of our daily life. This dataset provides details about NYC's restaurant locations, type of cuisine, inspections, violations, grades and adjudication information.
+		</p>
+		<h2>Click the button to see the results.</h2>
+		<!–– Calling the ajax ––>
+		<div class="ajax-container">
+			<input type="button" id="btn" value="Click me" />
+			
+			<div class="display-data"> </div>
+
+			<canvas id="myChart" width="400" height="200"></canvas>
+		</div>
+	</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+			  
+<script>
+//making the ajax call to get the data from API
+	var count = 0;
+	
+	$("#btn").click(function(){
+		fetchDataAndDisplay();
+	});
+	
+	function fetchDataAndDisplay(){
+		$.ajax({
+			url:"https://data.cityofnewyork.us/resource/9w7m-hzhe.json",
+			method:"GET"
+		}).done(function(data){
+			var start = count > 0 ? 5 * count : count;
+			var str = '';
+			dataType: "json";
+			for(var i=start; i<data.length; i++){
+				str += '<div class="item-details">' + 
+
+					'Name: ' + data[i].dba + '<br />' +
+					'Cuisine description: ' + data[i].cuisine_description + '<br />' +
+					'Boro: ' + data[i].boro + '<br />' +
+					'Building: ' + data[i].building + '<br />' +
+					'Zip: ' + data[i].zipcode + '<br />' +
+					'Phone: ' + data[i].phone + '<br />' +
+					'Grade: ' + data[i].grade + '<br />' +
+					'Violation description: ' + data[i].violation_description + '<br />' +
+	
+					'</div>';
+
+
+			}
+			
+			if(start == data.length){
+				count = 0;
+				$(".display-data").empty();
+				$(".display-data").append("Error!");
+				return;
+			}
+			
+			count++;
+			$(".display-data").empty();
+			$(".display-data").append(str);
+		})
+	}
+
+</script>
+
+</html>

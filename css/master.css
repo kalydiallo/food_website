@@ -1,0 +1,92 @@
+
+/*Ziaul Choudhury(Zia)*/
+
+body {
+    background-image: url("../images/bg.jpg");
+}
+.container{
+    width: 80%;
+    margin: auto;
+    background-color: #696969;
+    color: white;
+    font-family: Sans-serif;
+    font-size: 1.7vw;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover{
+    background-color: skyblue;
+    color: green;
+}
+
+nav .active {
+    background-color: #4CAF50;
+}
+
+.tab {
+    padding-left:3em;
+}
+
+.tab2 {
+    padding-left:8em;
+}
+
+.myImg, .topH1{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    text-align: center;
+    color: 
+}
+
+
+.paraIntro{
+    padding: 25px;
+}
+
+h2{
+    text-align: center;
+}
+
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    body {   
+        width: 100%;
+        padding: 0;
+    }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+    body {
+        float: none;
+        width: 100%;
+    }
+
+    nav a {
+        float: none;
+        width: 100%;
+    }
+}
